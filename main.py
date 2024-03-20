@@ -4,16 +4,62 @@ from tkinter import messagebox
 import socket
 import os
 
-
-root = Tk()
-root.title("Paylaş")
-root.geometry("540x720+600+240")
-root.configure(bg="#7d2fbd")
-root.resizable(False,False)
+filename = None
 
 
+
+class App:
+      def __init__(self):
+            self.root = Tk()
+            self.root.title("Paylaş")
+            self.root.geometry("540x720+600+240")
+            self.root.configure(bg="#7d2fbd")
+            self.root.resizable(False,False)
+
+            image_icon = PhotoImage(file="share.png")
+            self.root.iconphoto(False,image_icon)
+
+            self.title_label = Label(self.root,text="File Transfer",
+                                     font=("Acumin Variable Concept",20,'bold'),
+                                    bg="#7d2fbd").place(x=25,y=30)
+
+            #Frame(self.root,width=420,height=2,bg="#ffffff").place(x=25,y=32)
+
+            send_image=PhotoImage(file="sender.png")
+            self.send_button=Button(self.root,image=send_image,bg="#7d2fbd",bd=0,command=self.open_sender)
+            self.send_button.place(x=60,y=100)
+
+            receive_image=PhotoImage(file="receive.png")
+            self.receive_button=Button(self.root,image=receive_image,bg="#7d2fbd",bd=0,command=self.open_receiver)
+            self.receive_button.place(x=360,y=100)
+
+
+            #label 
+            Label(self.root,text="Send",font=("Acumin Variable Concept",17,"bold"),bg="#7d2fbd").place(x=70,y=200)
+            Label(self.root,text="Receiver",font=("Acumin Variable Concept",17,"bold"),bg="#7d2fbd").place(x=350,y=200)
+
+
+            background=PhotoImage(file="assets/background.png")
+            Label(self.root,image=background).place(x=20,y=323)
+
+      def open_sender(self):
+            SenderWindow(self.root)
+
+      def open_receiver(self):
+            ReceiverWindow(self.root)
+
+
+class SenderWindow:
+      pass
+
+
+class ReceiverWindow:
+      pass
+
+
+"""
 def select_file():
-      global filename
+
       filename=filedialog.askopenfilename(initialdir=os.getcwd(),title="Select Image File",
                                           filetypes=(("file_type","*.txt"),("all files","*.*")))
       
@@ -112,33 +158,9 @@ def Receive():
 
 
 ##icon
+"""
 
-image_icon = PhotoImage(file="share.png")
-root.iconphoto(False,image_icon)
+if __name__ == "__main__":
+    app = App()
+    app.root.mainloop()
 
-Label(root,text="File Transfer",font=("Acumin Variable Concept",20,'bold'),
-      bg="#7d2fbd").place(x=25,y=30)
-
-#Frame(root,width=420,height=2,bg="#ffffff").place(x=25,y=32)
-
-send_image=PhotoImage(file="sender.png")
-send=Button(root,image=send_image,bg="#7d2fbd",bd=0,command=Send)
-
-send.place(x=60,y=100)
-
-receive_image=PhotoImage(file="receive.png")
-receive=Button(root,image=receive_image,bg="#7d2fbd",bd=0,command=Receive)
-receive.place(x=360,y=100)
-
-#label 
-Label(root,text="Send",font=("Acumin Variable Concept",17,"bold"),bg="#7d2fbd").place(x=70,y=200)
-Label(root,text="Receiver",font=("Acumin Variable Concept",17,"bold"),bg="#7d2fbd").place(x=350,y=200)
-
-
-background=PhotoImage(file="background.png")
-Label(root,image=background).place(x=20,y=323)
-
-
-
-
-root.mainloop()
