@@ -1,6 +1,20 @@
+import app
+import socket
+
+
+filename = None
+host = socket.gethostname()
+port = 8080
+
+if __name__ == "__main__":
+    app = app.App()
+    app.root.mainloop()
+
+
+"""
 from tkinter import *
 from tkinter import filedialog
-from tkinter import messagebox
+from tkinter import messageboxgit
 import socket
 import os
 
@@ -38,9 +52,10 @@ class App:
             #buton başlıkları
             #Label(self.root,text="Send",font=("Acumin Variable Concept",17,"bold"),bg="#7d2fbd").place(x=70,y=200)
             #Label(self.root,text="Receiver",font=("Acumin Variable Concept",17,"bold"),bg="#7d2fbd").place(x=350,y=200)
-            
+
             background=PhotoImage(file="assets/background.png")
             Label(self.root,image=background).place(x=20,y=323)
+            #incele !!
 
       def open_sender(self):
             SenderWindow(self.root)
@@ -67,12 +82,12 @@ class SenderWindow:
                   s.bind((host,port))
                   s.listen(1)
                   print(host)
-                  print("Waiting please")
+                  print("Lütfen bekleyiniz.")
                   conn,addr = s.accept()
                   file=open(filename,"rb")
                   file_data=file.read(1024)
                   conn.send(file_data)
-                  print("Veri transfer edildi")
+                  print("Veri transfer edildi.")
                   conn.close()
                   s.close()
 
@@ -133,14 +148,14 @@ class ReceiverWindow:
 
 
             self.sender_id_label = Label(
-            self.main, text="Gönderen ID:", font=("arial", 12), bg="#f4fdfe"
+            self.main, text="Sender ID:", font=("arial", 12), bg="#f4fdfe"
             )
             self.sender_id_label.pack(pady=10)
             self.sender_id_entry = Entry(self.main, width=25, font=("arial", 12))
             self.sender_id_entry.pack()
 
             self.incoming_file_label = Label(
-            self.main, text="Alınacak Dosya Adı:", font=("arial", 12), bg="#f4fdfe"
+            self.main, text="Receive File Name:", font=("arial", 12), bg="#f4fdfe"
             )
             self.incoming_file_label.pack(pady=10)
             self.incoming_file_entry = Entry(self.main, width=25, font=("arial", 12))
@@ -150,7 +165,7 @@ class ReceiverWindow:
 
             self.receive_button = Button(
             self.main,
-            text="Al",
+            text="Receive",
             width=8,
             height=1,
             font="arial 14 bold",
@@ -165,3 +180,4 @@ if __name__ == "__main__":
     app = App()
     app.root.mainloop()
 
+"""
